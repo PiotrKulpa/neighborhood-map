@@ -8,36 +8,25 @@ class MapContainer extends Component {
     return (
       <div style={{ height: '100vh', width: '100%' }}>
       <Map
-      google={this.props.google}
-      style={{width: '100%', height: '100%', position: 'relative'}}
-      className={'map'}
-      initialCenter={{
-            lat: 51.2467917,
-            lng: 22.5637148
-          }}
-      zoom={15}>
-    <Marker
-      title={this.props.title}
-      name={'Zamek'}
-      position={{lat: 51.2501936, lng: 22.5705799}} />
-    <Marker
-      title={this.props.title}
-      name={'Starówka'}
-      position={{lat: 51.2481902, lng: 22.5682031}} />
-    <Marker />
-    <Marker
-      name={'Fontanna'}
-      position={{lat: 51.2481985, lng: 22.5591314}}
-    />
-    <Marker
-      name={'Ogód Saski'}
-      position={{lat: 51.2481987, lng: 22.54578}}
-    />
-    <Marker
-      name={'Centrum Spotkania Kultur'}
-      position={{lat: 51.2463997, lng: 22.5501614}}
-    />
-  </Map>
+        google={this.props.google}
+        style={{width: '100%', height: '100%', position: 'relative'}}
+        className={'map'}
+        initialCenter={{
+              lat: 51.2467917,
+              lng: 22.5637148
+            }}
+        zoom={15}>
+        {this.props.places.map((el, i) => {
+          return (
+          <Marker
+            key={i}
+            title={el.name}
+            name={'Zamek'}
+            position={{lat: el.lat, lng: el.lng}}
+            />
+        )}
+        )}
+      </Map>
       </div>
     );
   }
