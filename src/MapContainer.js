@@ -1,37 +1,45 @@
 import React, { Component } from 'react';
 import './App.css';
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+//import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import scriptLoader from 'react-async-script-loader'
 
-class MapContainer extends Component {
+class MapContainer extends Component{
+    constructor(props) {
+        super(props);
+    }
+    componentWillReceiveProps({isScriptLoadSucceed}){
+        if (isScriptLoadSucceed) {
+          var myLatLng = {lat: 51.248529, lng: 22.5640563};
 
-  render() {
-    return (
-      <div style={{ height: '100vh', width: '100%' }}>
-      <Map
-        google={this.props.google}
-        style={{width: '100%', height: '100%', position: 'relative'}}
-        className={'map'}
-        initialCenter={{
-              lat: 51.2467917,
-              lng: 22.5637148
-            }}
-        zoom={15}>
-        {this.props.places.map((el, i) => {
-          return (
-          <Marker
-            key={i}
-            title={el.name}
-            name={'Zamek'}
-            position={{lat: el.lat, lng: el.lng}}
-            />
-        )}
-        )}
-      </Map>
-      </div>
-    );
-  }
+            var map = new window.google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: {lat: 51.248529, lng: 22.5640563}
+            });
+
+            this.props.places.map((el, i) => {
+              var marker = new window.google.maps.Marker({
+              animation: window.google.maps.Animation.DROP,
+              position: {lat: el.lat, lng: el.lng},
+              map: map,
+              title: el.name
+            });
+            })
+
+        }
+        else{
+            alert("script not loaded")
+        }
+    }
+
+    render(){
+        return(
+            <div>
+                <div id="map" style={{height: "600px"}}></div>
+            </div>
+        )
+    }
 }
 
-export default GoogleApiWrapper({
-  apiKey: ('AIzaSyAFIiMycwN7h_esLWJcwPRkdINM25zO4gE')
-})(MapContainer)
+export default scriptLoader(
+    ["https://maps.googleapis.com/maps/api/js?key=AIzaSyAFIiMycwN7h_esLWJcwPRkdINM25zO4gE"]
+)(MapContainer)

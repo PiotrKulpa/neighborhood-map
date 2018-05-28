@@ -8,11 +8,11 @@ class App extends Component {
 
   state = {
     places: [
-      {name: 'Castle in Lublin', lat: 51.2501936, lng: 22.5705799},
-      {name: 'Old Town', lat: 51.2501936, lng: 22.5705799},
-      {name: 'Fontain', lat: 51.2501936, lng: 22.5705799},
-      {name: 'State Park', lat: 51.2501936, lng: 22.5705799},
-      {name: 'Centre for the Meeting of Cultures', lat: 51.2501936, lng: 22.5705799}
+      {name: 'Castle in Lublin', lat: 51.247063, lng: 22.5669419},
+      {name: 'Old Town', lat: 51.24875, lng: 22.568635},
+      {name: 'Fontain', lat: 51.2481725, lng: 22.5595155},
+      {name: 'State Park', lat: 51.2485435, lng: 22.5481983},
+      {name: 'Centre for the Meeting of Cultures', lat: 51.2470124, lng: 22.5489064}
     ],
     title: 'Przykladowa nazwa'
   }
@@ -23,7 +23,6 @@ class App extends Component {
         <Search></Search>
         <div style={{ height: '100vh', width: '100%' }}>
           <MapContainer
-            title = {this.state.title}
             places = {this.state.places}
             ></MapContainer>
         </div>
