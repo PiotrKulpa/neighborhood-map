@@ -20,7 +20,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Search></Search>
+        <Search
+          places = {this.state.places}
+          ></Search>
         <div style={{ height: '100vh', width: '100%' }}>
           <MapContainer
             places = {this.state.places}

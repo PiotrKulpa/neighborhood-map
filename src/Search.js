@@ -6,6 +6,11 @@ class Search extends Component {
     return (
       <div className="">
         <input placeholder="Search for places"/>
+        <div>
+          {this.props.places.map((el, i) =>
+          <button key={i}>{el.name}</button>
+          )}
+        </div>
       </div>
     );
   }
