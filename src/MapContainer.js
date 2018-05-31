@@ -1,9 +1,44 @@
 import React, { Component } from 'react';
 import './App.css';
-//import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-import scriptLoader from 'react-async-script-loader'
+import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+//import scriptLoader from 'react-async-script-loader'
 
-class MapContainer extends Component{
+class MapContainer extends Component {
+
+  render() {
+     return (
+       <Map
+         google={this.props.google}
+         zoom={14}
+         initialCenter={{
+            lat: 51.248529,
+            lng: 22.5640563
+          }}
+          zoom={15}
+         >
+         {this.props.places.map((el, i) =>
+           <Marker
+            key = {i}
+            title={'The marker`s title will appear as a tooltip.'}
+            name={'SOMA'}
+            position={{lat: el.lat, lng: el.lng}} />
+
+         )}
+
+
+
+       </Map>
+     );
+   }
+
+ }
+
+   export default GoogleApiWrapper({
+     apiKey: ('AIzaSyAFIiMycwN7h_esLWJcwPRkdINM25zO4gE')
+   })(MapContainer)
+
+
+  /*
     constructor(props) {
         super(props);
     }
@@ -81,3 +116,4 @@ class MapContainer extends Component{
 export default scriptLoader(
     ["https://maps.googleapis.com/maps/api/js?key=AIzaSyAFIiMycwN7h_esLWJcwPRkdINM25zO4gE"]
 )(MapContainer)
+*/
