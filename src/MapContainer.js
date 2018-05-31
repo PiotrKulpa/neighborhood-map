@@ -17,11 +17,25 @@ class MapContainer extends Component {
           zoom={15}
          >
          {this.props.places.map((el, i) =>
-           <Marker
-            key = {i}
-            title={'The marker`s title will appear as a tooltip.'}
-            name={'SOMA'}
-            position={{lat: el.lat, lng: el.lng}} />
+
+            <Marker
+               key = {i}
+               title={el.name}
+               name={el.name}
+               position={{lat: el.lat, lng: el.lng}}
+             >
+             <InfoWindow
+               position={{lat: el.lat, lng: el.lng}}
+               visible={true}
+             >
+                <div>
+                  <h1>{el.name}</h1>
+                </div>
+             </InfoWindow>
+           </Marker>
+
+
+
 
          )}
 
