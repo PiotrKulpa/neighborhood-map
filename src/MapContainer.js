@@ -34,9 +34,11 @@ class MapContainer extends Component {
                      title={el.name}
                      name={el.name}
                      position={{lat: el.lat, lng: el.lng}}
-                     icon={{
-                           url: `${require("./icons/custom_icon.png")}`,
-                           scaledSize: new window.google.maps.Size(64,64)
+                     icon={el.customIcon && {
+
+                          url: `${require("./icons/custom_icon.png")}`,
+                          scaledSize: new window.google.maps.Size(64,64)
+
                          }}
                      />
          )}
