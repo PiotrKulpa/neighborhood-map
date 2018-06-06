@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-//import scriptLoader from 'react-async-script-loader'
+import LogoImg from './icons/custom_icon.png';
 
 class MapContainer extends Component {
   state = {
@@ -34,9 +34,8 @@ class MapContainer extends Component {
                      title={el.name}
                      name={el.name}
                      position={{lat: el.lat, lng: el.lng}}
-                     icons={{
-                           url: "/icons/custom_icon.png",
-
+                     icon={{
+                           url: `${require("./icons/custom_icon.png")}`,
                            scaledSize: new window.google.maps.Size(64,64)
                          }}
                      />
