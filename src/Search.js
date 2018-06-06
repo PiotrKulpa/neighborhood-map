@@ -11,8 +11,14 @@ class Search extends Component {
           />
         <div>
           {this.props.places.map((el, i) =>
-          <button key={i}>{el.name}</button>
+          <button
+            key={i}
+            data-id={i}
+            onClick = {e => this.props.markerBounce(e.target.dataset.id)} >
+            {el.name}
+          </button>
           )}
+          <p>{this.props.info}</p>
         </div>
       </div>
     );

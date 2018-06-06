@@ -33,7 +33,13 @@ class MapContainer extends Component {
                      key = {i}
                      title={el.name}
                      name={el.name}
-                     position={{lat: el.lat, lng: el.lng}} />
+                     position={{lat: el.lat, lng: el.lng}}
+                     icons={{
+                           url: "/icons/custom_icon.png",
+
+                           scaledSize: new window.google.maps.Size(64,64)
+                         }}
+                     />
          )}
 
          <InfoWindow
