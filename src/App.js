@@ -3,6 +3,16 @@ import Search from './Search';
 import './App.css';
 import MapContainer from './MapContainer';
 
+var foursquare = require('react-foursquare')({
+  clientID: '3HABTRH4Q33WAFZLRZQEXCGWC5MIUGWZY30T2XPPDHSZQCYS',
+  clientSecret: '44NQMWARLHMCRCD1BW0UNKNZBOL351XOWORZ5VE2P45EJZNA'
+});
+
+var params = {
+  "ll": "51.2504931,22.5702397",
+  "query": 'Castle in Lublin'
+};
+
 
 class App extends Component {
 
@@ -44,6 +54,16 @@ class App extends Component {
 
 
   }
+
+  componentDidMount() {
+
+    foursquare.venues.getVenues(params)
+      .then(res=> {
+        console.log(res.response.venues);
+      });
+  }
+
+
 
   render() {
     return (
