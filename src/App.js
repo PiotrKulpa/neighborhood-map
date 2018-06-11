@@ -3,30 +3,32 @@ import Search from './Search';
 import './App.css';
 import MapContainer from './MapContainer';
 
-var foursquare = require('react-foursquare')({
+let foursquare = require('react-foursquare')({
   clientID: '3HABTRH4Q33WAFZLRZQEXCGWC5MIUGWZY30T2XPPDHSZQCYS',
   clientSecret: '44NQMWARLHMCRCD1BW0UNKNZBOL351XOWORZ5VE2P45EJZNA'
 });
 
-var params = {
-  "ll": "51.2504931,22.5702397",
-  "query": 'Castle in Lublin'
+let params = {
+  "ll": "51.2470124,22.5489064",
+  "query": 'culture',
+  "limit": 1
 };
 
 
 class App extends Component {
 
   basicPlaces = [
-    {id: 0, name: 'Castle in Lublin', lat: 51.2504931, lng: 22.5702397, info: 'Information about Castle', customIcon: false},
-    {id: 1, name: 'Old Town', lat: 51.24875, lng: 22.568635, info: 'Information about Old Town', customIcon: false},
-    {id: 2, name: 'Fontain', lat: 51.2481725, lng: 22.5595155, info: 'Information about Fontain', customIcon: false},
-    {id: 3, name: 'State Park', lat: 51.2485435, lng: 22.5481983, info: 'Information about State Park', customIcon: false},
-    {id: 4, name: 'Centre for the Meeting of Cultures', lat: 51.2470124, lng: 22.5489064, info: 'Information about Centre for Meeting...', customIcon: false}
+    {id: 0, name: 'Castle in Lublin', lat: 51.2504931, lng: 22.5702397, infoName: '', infoAddr: '', customIcon: false},
+    {id: 1, name: 'Old Town', lat: 51.24875, lng: 22.568635, infoName: '', infoAddr: '', customIcon: false},
+    {id: 2, name: 'Plac Litewski', lat: 51.2481725, lng: 22.5595155, infoName: '', infoAddr: '', customIcon: false},
+    {id: 3, name: 'State Park', lat: 51.2485435, lng: 22.5481983, infoName: '', infoAddr: '', customIcon: false},
+    {id: 4, name: 'Centrum Spotkania Kultur', lat: 51.2470124, lng: 22.5489064, infoName: '', infoAddr: '', customIcon: false}
   ]
 
   state = {
     places: this.basicPlaces,
-    infoPanel: ''
+    infoName: '',
+    infoAddr: ''
   }
 
   filterPlaces=(filterKey) => {
@@ -44,24 +46,29 @@ class App extends Component {
     }
   }
 
-  markerBounce=(id)=> {
-      this.basicPlaces.forEach((el) => el.customIcon = false);
-      this.basicPlaces[id].customIcon = true;
-      this.setState({
-        infoPanel: this.state.places[id].info,
-        places: this.basicPlaces
-      })
-
-
-  }
-
-  componentDidMount() {
+  markerCheck=(id)=> {
+    params['ll'] = `${this.basicPlaces[id].lat},${this.basicPlaces[id].lng}`;
+    params['query'] = this.basicPlaces[id].name;
 
     foursquare.venues.getVenues(params)
       .then(res=> {
-        console.log(res.response.venues);
+        console.log(res.response.venues[0].location.address);
+        let infoNameTemp = '',
+            infoAddrTemp = '';
+        res.response.venues[0].name ? infoNameTemp = res.response.venues[0].name : infoNameTemp = '';
+        res.response.venues[0].location.address ? infoAddrTemp = res.response.venues[0].location.address : infoAddrTemp = '';
+        this.setState({
+          infoName: infoNameTemp,
+          infoAddr: infoAddrTemp,
+          places: this.basicPlaces
+        })
+
       });
+
+      this.basicPlaces.forEach((el) => el.customIcon = false);
+      this.basicPlaces[id].customIcon = true;
   }
+
 
 
 
@@ -71,8 +78,9 @@ class App extends Component {
         <Search
           places = {this.state.places}
           filterPlaces = {this.filterPlaces}
-          markerBounce = {this.markerBounce}
-          info = {this.state.infoPanel}
+          markerCheck = {this.markerCheck}
+          infoName = {this.state.infoName}
+          infoAddr = {this.state.infoAddr}
           ></Search>
         <div style={{ height: '100vh', width: '100%' }}>
           <MapContainer

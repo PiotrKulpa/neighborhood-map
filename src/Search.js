@@ -14,11 +14,18 @@ class Search extends Component {
           <button
             key={i}
             data-id={i}
-            onClick = {e => this.props.markerBounce(e.target.dataset.id)} >
+            onClick = {e => this.props.markerCheck(e.target.dataset.id)} >
             {el.name}
           </button>
           )}
-          <p>{this.props.info}</p>
+          {this.props.infoName ?
+          <p><strong>Name:</strong> {this.props.infoName}</p> :
+          <p><strong>Name:</strong> not available</p>
+          }
+          {this.props.infoAddr ?
+          <p><strong>Address:</strong> {this.props.infoAddr}</p> :
+          <p><strong>Address:</strong> not available</p>
+          }
         </div>
       </div>
     );
