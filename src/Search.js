@@ -6,7 +6,7 @@ class Search extends Component {
     return (
       <div className="">
         <input
-          placeholder="Search for places"
+          placeholder="Filter places"
           onChange = {e => this.props.filterPlaces(e.target.value)}
           />
         <div>

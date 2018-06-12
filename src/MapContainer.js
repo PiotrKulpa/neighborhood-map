@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import './App.css';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
+
+
 class MapContainer extends Component {
+
   state = {
      showingInfoWindow: false,
      activeMarker: {},
@@ -19,15 +22,7 @@ class MapContainer extends Component {
   render() {
      return (
        <Map google={this.props.google}
-            zoom={14}
-            bounds={
-            new this.props.google.maps.LatLngBounds(
-              { lat: 42.02, lng: -77.01 },
-              { lat: 42.03, lng: -77.02 },
-              { lat: 41.03, lng: -77.04 },
-              { lat: 42.05, lng: -77.02 }
-            )
-            }
+            zoom={13}
            initialCenter={{
               lat: 51.248529,
               lng: 22.5640563

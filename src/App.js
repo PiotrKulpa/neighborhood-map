@@ -75,13 +75,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Search
-          places = {this.state.places}
-          filterPlaces = {this.filterPlaces}
-          markerCheck = {this.markerCheck}
-          infoName = {this.state.infoName}
-          infoAddr = {this.state.infoAddr}
-          ></Search>
+        <div className="search-panel">
+          <Search
+
+            places = {this.state.places}
+            filterPlaces = {this.filterPlaces}
+            markerCheck = {this.markerCheck}
+            infoName = {this.state.infoName}
+            infoAddr = {this.state.infoAddr}
+            ></Search>
+        </div>
         <div style={{ height: '100vh', width: '100%' }}>
           <MapContainer
             places = {this.state.places}
