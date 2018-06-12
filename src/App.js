@@ -77,7 +77,6 @@ class App extends Component {
       <div className="App">
         <div className="">
           <Search
-
             places = {this.state.places}
             filterPlaces = {this.filterPlaces}
             markerCheck = {this.markerCheck}

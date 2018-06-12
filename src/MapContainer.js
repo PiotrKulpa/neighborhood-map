@@ -12,18 +12,20 @@ class MapContainer extends Component {
      selectedPlace: {},
    };
 
-   onMarkerClick = (props, marker, e) =>
+   onMarkerClick = (props, marker, e) => {
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true
     });
+    console.log(props);
+  }
 
   render() {
      return (
        <Map google={this.props.google}
             zoom={13}
-           initialCenter={{
+            initialCenter={{
               lat: 51.248529,
               lng: 22.5640563
             }}>
@@ -53,6 +55,8 @@ class MapContainer extends Component {
           visible={this.state.showingInfoWindow}>
             <div>
               <h3>{this.state.selectedPlace.name}</h3>
+              <h4>Lat: {this.state.selectedPlace.position ? this.state.selectedPlace.position.lat : "not available"}</h4>
+              <h4>Lng: {this.state.selectedPlace.position ? this.state.selectedPlace.position.lng : "not available"}</h4>
             </div>
         </InfoWindow>
 

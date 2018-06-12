@@ -12,8 +12,6 @@ class Search extends Component {
     this.setState({
      cond: !this.state.cond
    });
-
-   console.log(this.state.cond);
   }
 
   render() {
