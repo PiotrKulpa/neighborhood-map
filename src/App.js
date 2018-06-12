@@ -75,7 +75,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="search-panel">
+        <div className="">
           <Search
 
             places = {this.state.places}

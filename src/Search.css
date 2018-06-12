@@ -1,0 +1,46 @@
+.search-panel {
+  position: fixed;
+  z-index: 100;
+  width: 250px;
+  height: 100vh;
+  background-color: white;
+  box-shadow: 2px 2px 55px black;
+}
+
+.search-panel input {
+  margin: 30px 5px;
+  width: 90%;
+  height: 25px;
+}
+
+.search-panel button {
+  margin: 0;
+  width: 90%;
+  height: 25px;
+  cursor: pointer;
+}
+
+.search-panel p {
+  text-align: left;
+  padding-left: 5px;
+}
+
+.close-panel {
+  width:30px !important;
+  right: -30px !important;
+  position: absolute;
+}
+
+.nav-close {
+  /* This trasform moves the drawer off canvas. */
+  -webkit-transform: translate(-250px, 0);
+  transform: translate(-250px, 0);
+  /* Optionally, we animate the drawer. */
+  transition: transform 0.3s ease;
+}
+
+.nav-open {
+  -webkit-transform: translate(0, 0);
+  transform: translate(0, 0);
+  transition: transform 0.3s ease;
+}

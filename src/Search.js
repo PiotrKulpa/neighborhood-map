@@ -1,10 +1,30 @@
 import React, { Component } from 'react';
-import './App.css';
+
+import './Search.css';
 
 class Search extends Component {
+
+  state = {
+    cond: false
+  }
+
+  navToggle() {
+    this.setState({
+     cond: !this.state.cond
+   });
+
+   console.log(this.state.cond);
+  }
+
   render() {
     return (
-      <div className="">
+      <div
+        className={this.state.cond ? "search-panel nav-close" : "search-panel nav-open" }
+        >
+        <button
+          className = "close-panel"
+          onClick = { () => this.navToggle()}
+          >≡</button>
         <input
           placeholder="Filter places"
           onChange = {e => this.props.filterPlaces(e.target.value)}
