@@ -36,6 +36,7 @@ class Search extends Component {
             {el.name}
           </button>
           )}
+          <p><strong>Information about the location:</strong></p>
           {this.props.infoName ?
           <p><strong>Name:</strong> {this.props.infoName}</p> :
           <p><strong>Name:</strong> not available</p>

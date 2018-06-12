@@ -18,7 +18,6 @@ class MapContainer extends Component {
       activeMarker: marker,
       showingInfoWindow: true
     });
-    console.log(props);
   }
 
   render() {
@@ -54,7 +53,7 @@ class MapContainer extends Component {
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}>
             <div>
-              <h3>{this.state.selectedPlace.name}</h3>
+              <h3>{this.state.selectedPlace.name ? this.state.selectedPlace.name : "not available"}</h3>
               <h4>Lat: {this.state.selectedPlace.position ? this.state.selectedPlace.position.lat : "not available"}</h4>
               <h4>Lng: {this.state.selectedPlace.position ? this.state.selectedPlace.position.lng : "not available"}</h4>
             </div>

@@ -9,8 +9,8 @@ let foursquare = require('react-foursquare')({
 });
 
 let params = {
-  "ll": "51.2470124,22.5489064",
-  "query": 'culture',
+  "ll": '',
+  "query": '',
   "limit": 1
 };
 
@@ -33,7 +33,6 @@ class App extends Component {
 
   filterPlaces=(filterKey) => {
     if(filterKey.length > 0) {
-      //let newPlaces = this.state.places.filter((el) => el.name.toLowerCase().includes(filterKey.toLowerCase()));
       this.setState((state) => {
         return {places: this.basicPlaces.filter((el) => el.name.toLowerCase().includes(filterKey.toLowerCase()))}
     }  )
@@ -47,26 +46,28 @@ class App extends Component {
   }
 
   markerCheck=(id)=> {
-    params['ll'] = `${this.basicPlaces[id].lat},${this.basicPlaces[id].lng}`;
-    params['query'] = this.basicPlaces[id].name;
+    this.setState({
+      infoName: 'loading...',
+      infoAddr: 'loading...'
+    })
+    params['ll'] = `${this.state.places[id].lat},${this.state.places[id].lng}`;
+    params['query'] = this.state.places[id].name;
 
     foursquare.venues.getVenues(params)
       .then(res=> {
-        console.log(res.response.venues[0].location.address);
         let infoNameTemp = '',
             infoAddrTemp = '';
         res.response.venues[0].name ? infoNameTemp = res.response.venues[0].name : infoNameTemp = '';
         res.response.venues[0].location.address ? infoAddrTemp = res.response.venues[0].location.address : infoAddrTemp = '';
         this.setState({
           infoName: infoNameTemp,
-          infoAddr: infoAddrTemp,
-          places: this.basicPlaces
+          infoAddr: infoAddrTemp
         })
 
       });
-
-      this.basicPlaces.forEach((el) => el.customIcon = false);
-      this.basicPlaces[id].customIcon = true;
+      // TODO: use setState
+      this.state.places.forEach((el) => el.customIcon = false);
+      this.state.places[id].customIcon = true;
   }
 
 
@@ -78,6 +79,7 @@ class App extends Component {
         <div className="">
           <Search
             places = {this.state.places}
+            basicPlaces = {this.basicPlaces}
             filterPlaces = {this.filterPlaces}
             markerCheck = {this.markerCheck}
             infoName = {this.state.infoName}
