@@ -23,7 +23,9 @@ class App extends Component {
     {id: 2, name: 'Plac Litewski', lat: 51.2481725, lng: 22.5595155, infoName: '', infoAddr: '', customIcon: false},
     {id: 3, name: 'State Park', lat: 51.2485435, lng: 22.5481983, infoName: '', infoAddr: '', customIcon: false},
     {id: 4, name: 'Centrum Spotkania Kultur', lat: 51.2470124, lng: 22.5489064, infoName: '', infoAddr: '', customIcon: false}
-  ]
+  ];
+
+  filteredPlaces = [];
 
   state = {
     places: this.basicPlaces,
@@ -33,23 +35,27 @@ class App extends Component {
 
   filterPlaces=(filterKey) => {
     if(filterKey.length > 0) {
+      this.filteredPlaces = this.basicPlaces.filter((el) => el.name.toLowerCase().includes(filterKey.toLowerCase()));
       this.setState((state) => {
-        return {places: this.basicPlaces.filter((el) => el.name.toLowerCase().includes(filterKey.toLowerCase()))}
+        return {places: this.filteredPlaces}
     }  )
 
 
     } else {
+      this.filteredPlaces = this.basicPlaces;
       this.setState({
-        places: this.basicPlaces
+        places: this.filteredPlaces
       })
     }
   }
 
   markerCheck=(id)=> {
+
     this.setState({
       infoName: 'loading...',
       infoAddr: 'loading...'
     })
+
     params['ll'] = `${this.state.places[id].lat},${this.state.places[id].lng}`;
     params['query'] = this.state.places[id].name;
 
@@ -65,9 +71,16 @@ class App extends Component {
         })
 
       });
-      // TODO: use setState
-      this.state.places.forEach((el) => el.customIcon = false);
-      this.state.places[id].customIcon = true;
+    
+      if(this.filteredPlaces.length > 0) {
+        this.filteredPlaces.forEach((el) => el.customIcon = false);
+        this.filteredPlaces[id].customIcon = true;
+      } else {
+        this.basicPlaces.forEach((el) => el.customIcon = false);
+        this.basicPlaces[id].customIcon = true;
+      }
+
+
   }
 
 
