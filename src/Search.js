@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import './Search.css';
 
 class Search extends Component {
@@ -14,21 +13,30 @@ class Search extends Component {
    });
   }
 
+  /**
+   * Render view of this component.
+   */
   render() {
     return (
       <div
         className={this.state.cond ? "search-panel nav-close" : "search-panel nav-open" }
         >
+
+        {/** Toggle button*/}
         <button
           className = "close-panel"
           onClick = { () => this.navToggle()}
           >≡</button>
+
+        {/** Input*/}
         <input
           placeholder="Filter places"
           onChange = {e => this.props.filterPlaces(e.target.value)}
           />
         <div>
           {this.props.places.map((el, i) =>
+
+          /** Render button with name of places*/
           <button
             key={i}
             data-id={i}
@@ -36,6 +44,8 @@ class Search extends Component {
             {el.name}
           </button>
           )}
+
+          {/** Additional information about the location*/}
           <p><strong>Information about the location:</strong></p>
           {this.props.infoName ?
           <p><strong>Name:</strong> {this.props.infoName}</p> :
@@ -49,6 +59,8 @@ class Search extends Component {
       </div>
     );
   }
+
 }
 
+/** @module Search */
 export default Search;
