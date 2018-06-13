@@ -19,18 +19,20 @@ class Search extends Component {
   render() {
     return (
       <div
-        className={this.state.cond ? "search-panel nav-close" : "search-panel nav-open" }
+        className = {this.state.cond ? "search-panel nav-close" : "search-panel nav-open" }
         >
 
         {/** Toggle button*/}
         <button
+          aria-label = "Hide or show search panel"
           className = "close-panel"
           onClick = { () => this.navToggle()}
           >≡</button>
 
         {/** Input*/}
         <input
-          placeholder="Filter places"
+          aria-label = "Filter places by name"
+          placeholder = "Filter places"
           onChange = {e => this.props.filterPlaces(e.target.value)}
           />
         <div>
@@ -38,22 +40,22 @@ class Search extends Component {
 
           /** Render button with name of places*/
           <button
-            key={i}
-            data-id={i}
+            key = {i}
+            data-id = {i}
             onClick = {e => this.props.markerCheck(e.target.dataset.id)} >
             {el.name}
           </button>
           )}
 
           {/** Additional information about the location*/}
-          <p><strong>Information about the location:</strong></p>
+          <p tabIndex = "0"><strong>Information about the location:</strong></p>
           {this.props.infoName ?
-          <p><strong>Name:</strong> {this.props.infoName}</p> :
-          <p><strong>Name:</strong> not available</p>
+          <p tabIndex = "0"><strong>Name:</strong> {this.props.infoName}</p> :
+          <p tabIndex = "0"><strong>Name:</strong> not available</p>
           }
           {this.props.infoAddr ?
-          <p><strong>Address:</strong> {this.props.infoAddr}</p> :
-          <p><strong>Address:</strong> not available</p>
+          <p tabIndex = "0"><strong>Address:</strong> {this.props.infoAddr}</p> :
+          <p tabIndex = "0"><strong>Address:</strong> not available</p>
           }
         </div>
       </div>

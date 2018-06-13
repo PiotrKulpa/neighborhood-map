@@ -38,9 +38,12 @@ class MapContainer extends Component {
      return (
 
        /** Render map*/
-       <Map google={this.props.google}
-            zoom={13}
-            initialCenter={{
+       <Map
+            aria-label="Map of neighborhood places"
+            role="application"
+            google = {this.props.google}
+            zoom = {13}
+            initialCenter = {{
               lat: 51.248529,
               lng: 22.5640563
             }}>
@@ -48,14 +51,16 @@ class MapContainer extends Component {
          {this.props.places.map((el, i) =>
 
             /** Render markers on map*/
-            <Marker onClick={this.onMarkerClick}
+            <Marker
+                    aria-label="Marker"
+                    onClick = {this.onMarkerClick}
                      key = {i}
-                     title={el.name}
-                     name={el.name}
-                     position={{lat: el.lat, lng: el.lng}}
+                     title = {el.name}
+                     name = {el.name}
+                     position = {{lat: el.lat, lng: el.lng}}
 
                      /** If marker is clicked render custom icon otherwise render default icon*/
-                     icon={el.customIcon === true ? {
+                     icon = {el.customIcon === true ? {
                           url: `${require("./icons/custom_icon.png")}`,
                           scaledSize: new window.google.maps.Size(32,32)
                           } :
@@ -69,8 +74,9 @@ class MapContainer extends Component {
 
           {/** Render Info Window*/}
            <InfoWindow
-            marker={this.state.activeMarker}
-            visible={this.state.showingInfoWindow}>
+            aria-label="Info window"
+            marker = {this.state.activeMarker}
+            visible = {this.state.showingInfoWindow}>
               {/** Show name and position of marker in Info Window*/}
               <div>
                 <h3>{this.state.selectedPlace.name ? this.state.selectedPlace.name : "not available"}</h3>
