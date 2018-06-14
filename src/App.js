@@ -138,7 +138,7 @@ class App extends Component {
         <div style={{ height: '100vh', width: '100%' }}>
           <MapContainer
             places = {this.state.places}
-            ></MapContainer>
+          ></MapContainer>
         </div>
       </div>
     );

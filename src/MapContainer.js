@@ -53,8 +53,8 @@ class MapContainer extends Component {
 
             /** Render markers on map*/
             <Marker
-              tabIndex = "0"
-              aria-label="Marker"
+              tabIndex = {0}
+              aria-label = "Marker"
               onClick = {this.onMarkerClick}
                key = {i}
                title = {el.name}
@@ -71,7 +71,8 @@ class MapContainer extends Component {
                        scaledSize: new window.google.maps.Size(32,32)
                     }
                 }
-            />
+            >
+            </Marker>
          )}
 
           {/** Render Info Window*/}

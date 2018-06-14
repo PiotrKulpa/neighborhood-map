@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
 import './Search.css';
 
+/**
+ * Class representing a Search component.
+ * @extends React.Component
+ */
 class Search extends Component {
 
+  /**
+   * @property {object}    this.state - The default values for state.
+   * @property {boolean}   state.cond  - The true/false of show/hide search component.
+   */
   state = {
     cond: false
   }
 
+  /**
+   * Toggle search component.
+   */
   navToggle() {
     this.setState({
      cond: !this.state.cond
@@ -52,7 +63,7 @@ class Search extends Component {
           <p
             tabIndex = "0"
             aria-label = "Informations about the location from foursquare.com"
-            ><strong>Information about the location:</strong>
+            ><strong>Information about the location from Foursquare.com:</strong>
           </p>
           {this.props.infoName ?
           <p

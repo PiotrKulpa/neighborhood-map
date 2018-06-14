@@ -1,3 +1,4 @@
+/* search component */
 .search-panel {
   position: fixed;
   z-index: 100;
@@ -31,6 +32,15 @@
   position: absolute;
 }
 
+.search-panel p:focus,
+.search-panel button:focus,
+.search-panel input:focus
+  {
+	outline: 0;
+	box-shadow: 0 0 8px 3px rgba(51, 174, 205, 1)
+}
+
+
 .nav-close {
   /* This trasform moves the drawer off canvas. */
   -webkit-transform: translate(-250px, 0);
@@ -40,7 +50,9 @@
 }
 
 .nav-open {
+  /* This trasform moves the drawer on canvas. */
   -webkit-transform: translate(0, 0);
   transform: translate(0, 0);
+  /* Optionally, we animate the drawer. */
   transition: transform 0.3s ease;
 }
