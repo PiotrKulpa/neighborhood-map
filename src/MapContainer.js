@@ -39,49 +39,52 @@ class MapContainer extends Component {
 
        /** Render map*/
        <Map
-            aria-label="Map of neighborhood places"
-            role="application"
-            google = {this.props.google}
-            zoom = {13}
-            initialCenter = {{
-              lat: 51.248529,
-              lng: 22.5640563
-            }}>
+        aria-label="Map of neighborhood places"
+        role="application"
+        tabIndex = "1"
+        google = {this.props.google}
+        zoom = {13}
+        initialCenter = {{
+          lat: 51.248529,
+          lng: 22.5640563
+        }}>
 
-         {this.props.places.map((el, i) =>
+        {this.props.places.map((el, i) =>
 
             /** Render markers on map*/
             <Marker
-                    aria-label="Marker"
-                    onClick = {this.onMarkerClick}
-                     key = {i}
-                     title = {el.name}
-                     name = {el.name}
-                     position = {{lat: el.lat, lng: el.lng}}
+              tabIndex = "0"
+              aria-label="Marker"
+              onClick = {this.onMarkerClick}
+               key = {i}
+               title = {el.name}
+               name = {el.name}
+               position = {{lat: el.lat, lng: el.lng}}
 
-                     /** If marker is clicked render custom icon otherwise render default icon*/
-                     icon = {el.customIcon === true ? {
-                          url: `${require("./icons/custom_icon.png")}`,
-                          scaledSize: new window.google.maps.Size(32,32)
-                          } :
-                          {
-                             url: `${require("./icons/default_icon.png")}`,
-                             scaledSize: new window.google.maps.Size(32,32)
-                          }
-                      }
+               /** If marker is clicked render custom icon otherwise render default icon*/
+               icon = {el.customIcon === true ? {
+                    url: `${require("./icons/custom_icon.png")}`,
+                    scaledSize: new window.google.maps.Size(32,32)
+                    } :
+                    {
+                       url: `${require("./icons/default_icon.png")}`,
+                       scaledSize: new window.google.maps.Size(32,32)
+                    }
+                }
             />
          )}
 
           {/** Render Info Window*/}
            <InfoWindow
+            tabIndex = "0"
             aria-label="Info window"
             marker = {this.state.activeMarker}
             visible = {this.state.showingInfoWindow}>
               {/** Show name and position of marker in Info Window*/}
               <div>
-                <h3>{this.state.selectedPlace.name ? this.state.selectedPlace.name : "not available"}</h3>
-                <h4>Lat: {this.state.selectedPlace.position ? this.state.selectedPlace.position.lat : "not available"}</h4>
-                <h4>Lng: {this.state.selectedPlace.position ? this.state.selectedPlace.position.lng : "not available"}</h4>
+                <h3 tabIndex = "0" aria-label="Info window - name of place">{this.state.selectedPlace.name ? this.state.selectedPlace.name : "not available"}</h3>
+                <h4 tabIndex = "0" aria-label="Info window - position of place">Lat: {this.state.selectedPlace.position ? this.state.selectedPlace.position.lat : "not available"}</h4>
+                <h4 tabIndex = "0" aria-label="Info window - position of place">Lng: {this.state.selectedPlace.position ? this.state.selectedPlace.position.lng : "not available"}</h4>
               </div>
           </InfoWindow>
 

@@ -40,6 +40,7 @@ class Search extends Component {
 
           /** Render button with name of places*/
           <button
+            aria-label = "Click to show more information about the location below list"
             key = {i}
             data-id = {i}
             onClick = {e => this.props.markerCheck(e.target.dataset.id)} >
@@ -48,14 +49,34 @@ class Search extends Component {
           )}
 
           {/** Additional information about the location*/}
-          <p tabIndex = "0"><strong>Information about the location:</strong></p>
+          <p
+            tabIndex = "0"
+            aria-label = "Informations about the location from foursquare.com"
+            ><strong>Information about the location:</strong>
+          </p>
           {this.props.infoName ?
-          <p tabIndex = "0"><strong>Name:</strong> {this.props.infoName}</p> :
-          <p tabIndex = "0"><strong>Name:</strong> not available</p>
+          <p
+            tabIndex = "0"
+            aria-label = "Informations about location name from foursquare.com"
+            ><strong>Name:</strong> {this.props.infoName}
+          </p> :
+          <p
+            tabIndex = "0"
+            aria-label = "Informations about location are not available"
+            ><strong>Name:</strong> not available
+          </p>
           }
           {this.props.infoAddr ?
-          <p tabIndex = "0"><strong>Address:</strong> {this.props.infoAddr}</p> :
-          <p tabIndex = "0"><strong>Address:</strong> not available</p>
+          <p
+            tabIndex = "0"
+            aria-label = "Informations about location address from foursquare.com"
+            ><strong>Address:</strong> {this.props.infoAddr}
+          </p> :
+          <p
+            tabIndex = "0"
+            aria-label = "Informations about location address are not available"
+            ><strong>Address:</strong> not available
+          </p>
           }
         </div>
       </div>
